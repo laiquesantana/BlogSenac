@@ -1,6 +1,6 @@
 <div class="navbar">
 	<div class="logo_div">
-		<a href="index.php"><h1>Blog</h1></a>
+		<a href="index.php"><img id="console"  height="70" width="70" src="static/images/console.png"></a>
 	</div>
 	<ul>
 	  <li><a class="active" href="index.php">Home</a></li>

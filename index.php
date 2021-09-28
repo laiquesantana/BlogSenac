@@ -1,6 +1,6 @@
-<?php
+ <?php
 
-$classe = 'UsuarioController';
+/* $classe = 'UsuarioController';
 
 require_once 'controller/UsuarioController.php';
 
@@ -19,9 +19,9 @@ $usuario->listar();
 
 
 
-// $obj->listar();
+// $obj->listar(); */
 ?>
-
+<?php require_once('config.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,11 +37,13 @@ $usuario->listar();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 </head>
-<body>
+
+<body class="">
+ 		<div class="container"></div>
 	<!-- container - wraps whole page -->
 	<div class="container">
 
-    
+
 		<!-- navbar -->
 
         <?php include('includes/navbar.php') ?>
@@ -58,10 +60,13 @@ $usuario->listar();
 
 		<!-- footer -->
 
-        <div class="footer">
+		</div>
+        <div class="footer bg-dark">
 			<p>Todos os direitos reservados &copy; <?php echo date('Y'); ?></p>
 		</div>
-	</div>
+	
 	<!-- // container -->
+
+ 
 </body>
 </html>
