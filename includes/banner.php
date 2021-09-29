@@ -5,11 +5,14 @@
 		<a href="register.php" class="btn">Registre-se!</a>
 	</div>
 	<div class="login_div " id="formulario">
-		<form action="index.php" method="post" >
-			<div  class="bg-success  w-50 "><h2>Login</h2></div>
-			<input class="bg-light" type="text" name="username" placeholder="Username">
-			<input class="bg-light" type="password" name="password"  placeholder="Password"> 
-			<button class="btn" type="submit" name="login_btn">Login</button>
+
+		<form action="login.php" method="post" >
+			<label for="txUsuario">Email</label>
+			<input type="text" name="email" id="txUsuario" maxlength="150" />
+			<label for="txSenha">Senha</label>
+			<input type="password" name="senha" id="txSenha" />
+
+			<input type="submit" value="Entrar" />
 		</form>
 	</div>
 </div>
