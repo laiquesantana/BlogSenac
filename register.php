@@ -7,8 +7,7 @@ $_SESSION['formKey'] = sha1(rand());
 $name = $email = $senha =  "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  print_r($_POST);
-  exit;
+
   $name = test_input($_POST["nome"]);
   $email = test_input($_POST["email"]);
   $senha = test_input($_POST["senha"]);
@@ -23,27 +22,11 @@ function test_input($data) {
 
 
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Noto+Serif|Tangerine" rel="stylesheet">
-  <!-- Styling for public area -->
-  <link rel="stylesheet" href="static/css/style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Home </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
-</head>
+<?php include('includes/head.php') ?>
 
 <body>
 <?php include('includes/navbar.php') ?>
   <div class="container">
-
     <section class="vh-100" style="background-color: #eee;">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,7 +42,7 @@ function test_input($data) {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" id="form3Example1c" class="form-control" />
+                          <input type="text" name="nome" id="form3Example1c" class="form-control" />
                           <label class="form-label" for="form3Example1c">Seu Nome</label>
                         </div>
                       </div>
