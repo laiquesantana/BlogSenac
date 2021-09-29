@@ -23,26 +23,29 @@
 
 // print_r($_SESSION);
 
-class Pessoa{
-    public $nome;
-    public function __construct($nome){
-        $this->nome = $nome;
+// class Pessoa{
+//     public $nome;
+//     public function __construct($nome){
+//         $this->nome = $nome;
     
-    }
-}
-
-        
+//     }
+// }
 
 
+// $nome = "joão";
+// $idade = 18;
+// $salario = 2800.58;
+// $verdade = true;
+// $pessoas = array( new Pessoa('Tiago'), new Pessoa('Natalia'),new Pessoa('Fabio'),new Pessoa('Jennifer'));
 
-$nome = "joão";
-$idade = 18;
-$salario = 2800.58;
-$verdade = true;
-$pessoas = array( new Pessoa('Tiago'), new Pessoa('Natalia'),new Pessoa('Fabio'),new Pessoa('Jennifer'));
+// foreach ($pessoas as $key => $value) {
+//    echo $value->nome;
+// }
 
-foreach ($pessoas as $key => $value) {
-   echo $value->nome;
-}
-    
+$hash = password_hash('123456',PASSWORD_ARGON2I);
+$senhaDigita = '123456';
+
+print_r(rand());
+
+
 ?>

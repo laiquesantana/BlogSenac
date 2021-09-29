@@ -20,6 +20,10 @@ $usuario->listar();
 
 
 // $obj->listar(); */
+session_start();
+
+$_SESSION['formKey'] = sha1(rand());
+
 ?>
 <?php require_once('config.php') ?>
 <!DOCTYPE html>
@@ -48,15 +52,16 @@ $usuario->listar();
 
         <?php include('includes/navbar.php') ?>
 		<!-- // navbar -->
+
         <!-- banner -->
         <?php include('includes/banner.php') ?>
+		<!-- banner -->
+
 		<!-- Page content -->
 		<div class="content">
 			<h2 class="content-title">Recent Articles</h2>
 			<hr>
-			<!-- more content still to come here ... -->
 		</div>
-		<!-- // Page content -->
 
 		<!-- footer -->
 
@@ -64,8 +69,7 @@ $usuario->listar();
         <div class="footer bg-dark">
 			<p>Todos os direitos reservados &copy; <?php echo date('Y'); ?></p>
 		</div>
-	
-	<!-- // container -->
+		<!-- footer -->
 
  
 </body>

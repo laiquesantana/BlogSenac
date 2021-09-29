@@ -11,7 +11,7 @@
 			<input type="text" name="email" id="txUsuario" maxlength="150" />
 			<label for="txSenha">Senha</label>
 			<input type="password" name="senha" id="txSenha" />
-
+			<input type="hidden" name="hidden" <?php echo "value='" . $_SESSION['formKey'] . "'" ?>>
 			<input type="submit" value="Entrar" />
 		</form>
 	</div>
