@@ -68,11 +68,11 @@
 
 
     // Salva os dados encontrados na sessão
-    $_SESSION['UsuarioID'] = $usuario['id'];
+    $_SESSION['id'] = $usuario['id'];
     $_SESSION['UsuarioNome'] = $usuario['nome'];
     $_SESSION['UsuarioEmail'] = $usuario['email'];
     $_SESSION['Usuario'] = $usuario['usuario'];
     // Redireciona o visitante
-    header("Location: acessoRestrito.php");
+    header("Location: post.php");
     exit;
     
