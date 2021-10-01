@@ -14,15 +14,36 @@ $_SESSION['formKey'] = sha1(rand());
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+  $allow = array("jpg", "jpeg", "gif", "png");
+ 
 
-  $query = $mysqli->prepare("INSERT INTO posts ( titulo, conteudo, subtitulo, id_usuario) VALUES (?,?,?, ?)");
-  $query->bind_param("sssi", $titulo, $conteudo, $subtitulo ,$id_usuario);
+  $path = $_FILES['imagem']['name'];
+  $ext = pathinfo($path, PATHINFO_EXTENSION);
+  $nome = uniqid().'.'.$ext;
+  $todir = __DIR__.'/static/images/'.$nome;
+  if ( !!$_FILES['imagem']['tmp_name'] ) // is the file uploaded yet?
+  {
+      
+      if ( in_array( $ext, $allow) ) // is this file allowed
+      {
+            move_uploaded_file($_FILES['imagem']['tmp_name'], $todir ) or die("Erro uploading");
+
+      }
+      else
+      {
+        die("Extensão não permitida");
+      }
+  }
+
+  $query = $mysqli->prepare("INSERT INTO posts ( titulo, conteudo, subtitulo, id_usuario,imagem) VALUES (?,?,?,?,?)");
+  $query->bind_param("sssis", $titulo, $conteudo, $subtitulo ,$id_usuario,$imagem);
 
   // set parameters and execute
   $titulo = $_POST["titulo"];
   $subtitulo = $_POST["subtitulo"];
   $conteudo = $_POST["conteudo"];
   $id_usuario = $_SESSION["id"];
+  $imagem = $nome;
 
   /* execute prepared statement */
   $query->execute();
@@ -88,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                          <label class="form-label" for="form3Example1c">Data de publicação</label>
-                          <input type="text" name="data_publicacao" id="form3Example1c" class="form-control" />
+                          <input type="datetime-local" name="data_publicacao" id="form3Example1c" class="form-control" />
         
                         </div>
                       </div>
@@ -108,9 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
   </div>
 
-  <div class="footer bg-dark">
-    <p>Todos os direitos reservados &copy; <?php echo date('Y'); ?></p>
-  </div>
 
 
 </body>

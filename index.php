@@ -58,7 +58,7 @@ if(mysqli_num_rows($result)) {
 				if (isset($posts)) {
 					foreach ($posts as $chave => $publicacao) {
 						echo '  <div class="col-sm-6 mb-4">
-						<img src="'.$publicacao['imagem'].'" class="card-img-top" alt="...">
+						<img src="static/images/'.$publicacao['imagem'].'" class="card-img-top" alt="...">
 						<div class="card">
 						  <div class="card-body">
 							<h5 class="card-title">'. $publicacao['titulo']. '</h5>

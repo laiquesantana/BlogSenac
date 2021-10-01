@@ -7,12 +7,12 @@ $usuarioexistente = false;
 if (!isset($_SESSION)) session_start();
 
 
-
 $_SESSION['formKey'] = sha1(rand());
 
 $name = $email = $senha =  "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 
   $name = test_input($_POST["nome"]);
   $email = test_input($_POST["email"]);
@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (mysqli_num_rows($result)) {
     $usuarioexistente = true;
   } else {
-  
 
   $query = $mysqli->prepare("INSERT INTO usuarios ( nome, usuario, senha, email, ativo) VALUES (?, ?, ?, ?, ?)");
   $query->bind_param("ssssi", $nome, $usuario, $senha, $email, $ativo);
