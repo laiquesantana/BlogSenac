@@ -13,5 +13,11 @@
 	  <li><a href="#news">News</a></li>
 	  <li><a href="#contact">Contact</a></li>
 	  <li><a href="#about">About</a></li>
+	  <?php 
+		// Verifica se não há a variável da sessão que identifica o usuário
+		if (isset($_SESSION['id'])) {
+			echo '<li><a class="active" href="logout.php">Logout</a></li>';
+		}
+	  ?>
 	</ul>
 </div>

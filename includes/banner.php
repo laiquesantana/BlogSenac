@@ -5,17 +5,24 @@
 		<a href="register.php" class="btn">Registre-se!</a>
 	</div>
 
-	<div class="login_div " id="formulario">
+	  <?php 
+		// Verifica se não há a variável da sessão que identifica o usuário
+		if (!isset($_SESSION['id'])) {
+			echo '<div class="login_div " id="formulario">
 
-		<form action="login.php" method="post" >
-			<label for="txUsuario">Email</label>
-			<input type="text" name="email" id="txUsuario" maxlength="150" />
-			<label for="txSenha">Senha</label>
-			<input type="password" name="senha" id="txSenha" />
-			<input type="hidden" name="hidden" <?php echo "value='" . $_SESSION['formKey'] . "'" ?>>
-			<input type="submit" value="Entrar" />
-		</form>
-	</div>
+			<form action="login.php" method="post" >
+				<label for="txUsuario">Email</label>
+				<input type="text" name="email" id="txUsuario" maxlength="150" />
+				<label for="txSenha">Senha</label>
+				<input type="password" name="senha" id="txSenha" />
+				<input type="hidden" name="hidden" value="'.$_SESSION['formKey'] . '" >
+				<input type="submit" value="Entrar" />
+			</form>
+		</div>';
+		}else{
+			echo '<h1> Bem vindo: '.$_SESSION['UsuarioNome'].'  </h1>';
+		}
+	  ?>
 </div>
 
 <div class="row">

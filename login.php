@@ -2,7 +2,6 @@
     session_start();
     require_once('config.php');
 
-   
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         header("Location: index.php");
         exit;
@@ -27,6 +26,7 @@
     $query = "select id, email, nome, senha, usuario from usuarios where email = '{$usuario}' and ativo = 1";
 
     $result  = $mysqli->query($query);
+
 
     if(!mysqli_num_rows($result)) {
         echo "Usuário não encontrado";
