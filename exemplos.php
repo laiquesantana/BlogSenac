@@ -8,12 +8,12 @@
 
 //d -> representa o dia (01 -31);
 //m -> representa (1-12)
-//y ->  representa o ano em quatro digitos
+//Y ->  representa o ano em quatro digitos
 // l -> representa o dia da semana
 // H ->formato da hora (00 a 23)
 // h ->formato da hora (01 a 12)
 // i ->representa os minutos (00 a 59)
-// s ->representa os minutos (00 a 59)
+// s ->representa os segundos (00 a 59)
 // a ->representa se é AM ou PM
 // date_default_timezone_set('America/Sao_Paulo');
 

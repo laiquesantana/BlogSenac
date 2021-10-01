@@ -33,6 +33,7 @@
          // para não exceder o número máximo de conexões;
         $result ->close();
         $mysqli->close();
+        header("Location: index.php");
         exit;
     } else {
         //Coloca os dados retornados pelo banco em um array chamado $data
@@ -48,6 +49,7 @@
          // para não exceder o número máximo de conexões;
         $result ->close();
         $mysqli->close();
+        header("Location: index.php");
         exit;
     }
 

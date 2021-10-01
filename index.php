@@ -1,19 +1,15 @@
  <?php
 
 session_start();
-
+$_SESSION['formKey'] = sha1(rand());
 // fazer paginação do resultado
-
 /*
 	salvar data de publicação no arquivo post
 	salvar a imagem dentro da pasta static/images e salvar o caminho da imagem no banco.
 */
 
-$_SESSION['formKey'] = sha1(rand());
 require_once('config.php');
 
-
- 
 $query = "select * from posts ";
 
 $result  = $mysqli->query($query);
@@ -26,7 +22,6 @@ if(mysqli_num_rows($result)) {
 		$posts[] = $r;
 	}
 } 
-
 
 
 ?>
@@ -61,7 +56,7 @@ if(mysqli_num_rows($result)) {
 						<img src="static/images/'.$publicacao['imagem'].'" class="card-img-top" alt="...">
 						<div class="card">
 						  <div class="card-body">
-							<h5 class="card-title">'. $publicacao['titulo']. '</h5>
+							<h5 class="card-title">'. $publicacao['titulo'] .' ' .  date("d/m/Y", strtotime($publicacao['data_publicacao']))  . '</h5>
 							<p class="card-text">'.$publicacao['subtitulo'].'</p>
 							<a href="#" class="btn btn-primary">Saiba mais...</a>
 						  </div>

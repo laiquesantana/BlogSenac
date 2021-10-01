@@ -14,20 +14,29 @@ $_SESSION['formKey'] = sha1(rand());
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $allow = array("jpg", "jpeg", "gif", "png");
- 
 
-  $path = $_FILES['imagem']['name'];
-  $ext = pathinfo($path, PATHINFO_EXTENSION);
-  $nome = uniqid().'.'.$ext;
-  $todir = __DIR__.'/static/images/'.$nome;
+  $tipoImagensAceitos = array("jpg", "jpeg", "gif", "png");
+ 
+  // gera a data do tipo datetime
+  $date = new DateTime($_POST['data_publicacao'],  new DateTimeZone('America/Sao_Paulo'));
+  $date = $date->format('Y-m-d H:i:s');
+
+  $path = $_FILES['imagem']['name']; // captura o nome da imagem
+  
+  $ext = pathinfo($path, PATHINFO_EXTENSION); // captura a extensão da imagem
+
+  $nome = uniqid().'.'.$ext; // gera um nome unico para a imagem
+
+
+ $caminhoDestinoImagem = __DIR__.'/static/images/'.$nome; // contem o caminho onde vai ser salvo a imagem
+
+
   if ( !!$_FILES['imagem']['tmp_name'] ) // is the file uploaded yet?
   {
       
-      if ( in_array( $ext, $allow) ) // is this file allowed
+      if ( in_array( $ext, $tipoImagensAceitos) ) // is this file allowed
       {
-            move_uploaded_file($_FILES['imagem']['tmp_name'], $todir ) or die("Erro uploading");
-
+         move_uploaded_file($_FILES['imagem']['tmp_name'],$caminhoDestinoImagem ); // move a imagem da pasta tmp para a pasta destino
       }
       else
       {
@@ -35,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
   }
 
-  $query = $mysqli->prepare("INSERT INTO posts ( titulo, conteudo, subtitulo, id_usuario,imagem) VALUES (?,?,?,?,?)");
-  $query->bind_param("sssis", $titulo, $conteudo, $subtitulo ,$id_usuario,$imagem);
+  $query = $mysqli->prepare("INSERT INTO posts ( titulo, conteudo, subtitulo, data_publicacao, id_usuario,imagem) VALUES (?,?,?,?,?,?)");
+  $query->bind_param("ssssis", $titulo, $conteudo, $subtitulo,$data_publicacao ,$id_usuario,$imagem);
 
   // set parameters and execute
   $titulo = $_POST["titulo"];
@@ -44,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $conteudo = $_POST["conteudo"];
   $id_usuario = $_SESSION["id"];
   $imagem = $nome;
+  $data_publicacao = $date;
 
   /* execute prepared statement */
   $query->execute();
@@ -64,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="card-body p-md-12">
                 <div class="row justify-content-center">
                   <div class="col-md-12 col-lg-12 col-xl-12 order-2 order-lg-1">
-
                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Publicar</p>
                     <form class="mx-1 mx-md-4" method="POST" enctype='multipart/form-data' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
@@ -73,7 +82,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-outline flex-fill mb-0">
                         <label class="form-label" for="form3Example1c">Titulo</label>
                           <input type="text" name="titulo" id="form3Example1c" class="form-control" />
-                       
                         </div>
                       </div>
 
@@ -110,7 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-outline flex-fill mb-0">
                          <label class="form-label" for="form3Example1c">Data de publicação</label>
                           <input type="datetime-local" name="data_publicacao" id="form3Example1c" class="form-control" />
-        
                         </div>
                       </div>
 

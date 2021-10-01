@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $query->close();
   $mysqli->close();
   
-  $usuariologadosucesso = true;
+  $usuarioCadastradoSucesso = true;
  }
 }
 function test_input($data)
@@ -60,7 +60,7 @@ function test_input($data)
 <body>
   <?php include('includes/navbar.php') ?>
 
-  <?php if ($usuariologadosucesso) { ?> <div class="alert alert-success" role="alert">
+  <?php if ($usuarioCadastradoSucesso) { ?> <div class="alert alert-success" role="alert">
       Cadastrado com sucesso
     </div>
   <?php } ?>
@@ -86,7 +86,7 @@ function test_input($data)
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input type="text" name="nome" id="form3Example1c" class="form-control" />
+                          <input type="text" required name="nome" id="form3Example1c" class="form-control" />
                           <label class="form-label" for="form3Example1c">Seu Nome</label>
                         </div>
                       </div>
