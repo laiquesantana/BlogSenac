@@ -4,6 +4,17 @@
 	
 		<a href="register.php" class="btn">Registre-se!</a>
 	</div>
+	<?php
+
+		// if (!isset($_SESSION)) session_start();
+		// // Verifica se não há a variável da sessão que identifica o usuário
+		// if (isset($_SESSION['UsuarioID'])) {
+		// 	echo "<div class='login_div text-success'> <h1>usuario logado</h1></div>";
+		
+		// }else{
+
+		// }
+	?>
 	<div class="login_div " id="formulario">
 
 		<form action="login.php" method="post" >

@@ -1,34 +1,33 @@
  <?php
 
-/*
- funcionalidades faltantes:
- Pagina de cadastro
- Pagina para cadastrar um artigo
- E exibir esse artigo no index.php 
-*/
-/* $classe = 'UsuarioController';
-
-require_once 'controller/UsuarioController.php';
-
-
-$usuario =  new UsuarioController();
-
-$usuario->listar();
-
-
-// include_once 'connection.php';
-// include_once 'model/Cliente.php';
-
-
-// $con = new connection();
-// $info = new Cliente($con);
-
-
-
-// $obj->listar(); */
 session_start();
 
+// fazer paginação do resultado
+
+/*
+	salvar data de publicação no arquivo post
+	salvar a imagem dentro da pasta static/images e salvar o caminho da imagem no banco.
+*/
+
 $_SESSION['formKey'] = sha1(rand());
+require_once('config.php');
+
+
+ 
+$query = "select * from posts ";
+
+$result  = $mysqli->query($query);
+
+$posts = null;
+
+if(mysqli_num_rows($result)) {
+	
+	while ($r = mysqli_fetch_assoc($result)) {
+		$posts[] = $r;
+	}
+} 
+
+
 
 ?>
 <!-- head -->
@@ -52,8 +51,28 @@ $_SESSION['formKey'] = sha1(rand());
 
 		<!-- Page content -->
 		<div class="content">
-			<h2 class="content-title">Recent Articles</h2>
+			<h2 class="content-title">Artigos recentes</h2>
 			<hr>
+			<div class="row">
+			<?php
+				if (isset($posts)) {
+					foreach ($posts as $chave => $publicacao) {
+						echo '  <div class="col-sm-6 mb-4">
+						<img src="'.$publicacao['imagem'].'" class="card-img-top" alt="...">
+						<div class="card">
+						  <div class="card-body">
+							<h5 class="card-title">'. $publicacao['titulo']. '</h5>
+							<p class="card-text">'.$publicacao['subtitulo'].'</p>
+							<a href="#" class="btn btn-primary">Saiba mais...</a>
+						  </div>
+						</div>
+					  </div>';
+					}
+				}
+			
+			?>
+			</div>
+
 		</div>
 
 		<!-- footer -->
