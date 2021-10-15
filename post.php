@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   $query = $mysqli->prepare("INSERT INTO posts ( titulo, conteudo, subtitulo, data_publicacao, id_usuario,imagem) VALUES (?,?,?,?,?,?)");
-  $query->bind_param("ssssis", $titulo, $conteudo, $subtitulo,$data_publicacao ,$id_usuario,$imagem);
+  $query->bind_param("sssiis", $titulo, $conteudo, $subtitulo,$data_publicacao ,$id_usuario,$imagem);
 
   // set parameters and execute
   $titulo = $_POST["titulo"];
